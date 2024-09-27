@@ -21,3 +21,6 @@ https://www.reddit.com/r/CEH/comments/1dd82jj/i_pass_ceh_practical_exam_1820/ --
 
 
 https://github.com/MRhacker3340/CEH-V12-Practical-Notes/blob/main/CEH%20practical.pdf
+
+
+https://github.com/sampritdas8/Ec-Council-CEH-Practical--Guide-For-Exam/blob/main/CEH(Practical).md    --- Useful
