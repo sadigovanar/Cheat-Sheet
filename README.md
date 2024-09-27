@@ -7,3 +7,6 @@ https://adithyanak.gitbook.io/ceh-practical ---- Useful
 
 https://github.com/winsecurity/CheatSheets/blob/master/Buffer%20Overflows.md
 https://github.com/cmuppin/CEH/blob/main/CEH-Prac%20Guide
+
+
+https://github.com/DarkLycn1976/CEH-Practical-Notes-and-Tools    ---- Useful
