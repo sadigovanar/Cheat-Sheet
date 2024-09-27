@@ -12,3 +12,5 @@ https://github.com/cmuppin/CEH/blob/main/CEH-Prac%20Guide
 https://github.com/DarkLycn1976/CEH-Practical-Notes-and-Tools    ---- Useful
 
 https://github.com/hunterxxx/CEH-v12-Practical    ----- Useful
+
+https://github.com/sampritdas8/Ec-Council-CEH-Practical--Guide-For-Exam/blob/main/CEH(Practical).md   ---- Useful
