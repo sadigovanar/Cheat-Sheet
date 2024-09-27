@@ -14,3 +14,5 @@ https://github.com/DarkLycn1976/CEH-Practical-Notes-and-Tools    ---- Useful
 https://github.com/hunterxxx/CEH-v12-Practical    ----- Useful
 
 https://github.com/sampritdas8/Ec-Council-CEH-Practical--Guide-For-Exam/blob/main/CEH(Practical).md   ---- Useful
+
+https://www.studocu.com/in/document/mahatma-gandhi-university/bachelor-of-computer-applications/ceh-practical-notes-this-is-very-useful-and-informative-content-for-every-technology-graduates-and/43274991   --- Useful
