@@ -26,3 +26,5 @@ https://github.com/MRhacker3340/CEH-V12-Practical-Notes/blob/main/CEH%20practica
 https://github.com/sampritdas8/Ec-Council-CEH-Practical--Guide-For-Exam/blob/main/CEH(Practical).md    --- Useful
 
 https://book.thegurusec.com/certifications/certified-ethical-hacker-practical?source=post_page-----647926a3a0ac--------------------------------  --Useful
+
+https://book.thegurusec.com/certifications/certified-ethical-hacker-practical   -Useful
