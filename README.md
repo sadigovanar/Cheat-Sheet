@@ -1,4 +1,11 @@
 # Cheat-Sheet---For-Exam
+########
+Very Useful
+https://github.com/Samson-DVS/CEH-Practical-Notes
+https://github.com/nirangadh/ceh-practical
+https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html
+#########
+
 https://github.com/cmuppin/CEH?source=post_page-----689b79f19fde--------------------------------
 https://github.com/cmuppin/CEH/blob/main/Stegnography
 
