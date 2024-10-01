@@ -30,3 +30,5 @@ https://github.com/sampritdas8/Ec-Council-CEH-Practical--Guide-For-Exam/blob/mai
 https://book.thegurusec.com/certifications/certified-ethical-hacker-practical?source=post_page-----647926a3a0ac--------------------------------  --Useful
 
 https://book.thegurusec.com/certifications/certified-ethical-hacker-practical   -Useful
+
+https://github.com/cmuppin/CEH/tree/main
