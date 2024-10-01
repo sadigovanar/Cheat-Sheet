@@ -1,4 +1,7 @@
 # Cheat-Sheet---For-Exam
+https://medium.com/techiepedia/certified-ethical-hacker-practical-exam-guide-dce1f4f216c9
+
+
 ########
 Very Useful
 https://github.com/Samson-DVS/CEH-Practical-Notes
