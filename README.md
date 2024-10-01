@@ -32,3 +32,5 @@ https://book.thegurusec.com/certifications/certified-ethical-hacker-practical?so
 https://book.thegurusec.com/certifications/certified-ethical-hacker-practical   -Useful
 
 https://github.com/cmuppin/CEH/tree/main
+
+https://book.thegurusec.com/certifications/certified-ethical-hacker-practical
