@@ -50,3 +50,7 @@ https://book.thegurusec.com/certifications/certified-ethical-hacker-practical
 
 ################# USEFULL
 https://vikaschahal01.medium.com/how-i-cracked-ceh-practical-with-18-20-score-a43bd6c975f7
+
+
+################# USEFULL
+https://medium.com/cyversity/ceh-practical-my-exam-review-68663e7376b4
