@@ -7,6 +7,7 @@ Very Useful
 https://github.com/Samson-DVS/CEH-Practical-Notes
 https://github.com/nirangadh/ceh-practical
 https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html
+https://vikaschahal01.medium.com/how-i-cracked-ceh-practical-with-18-20-score-a43bd6c975f7
 #########
 
 https://github.com/cmuppin/CEH?source=post_page-----689b79f19fde--------------------------------
