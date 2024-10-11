@@ -1,4 +1,7 @@
 # Cheat-Sheet---For-Exam
+
+Best https://vikaschahal01.medium.com/how-i-cracked-ceh-practical-with-18-20-score-a43bd6c975f7
+
 https://medium.com/techiepedia/certified-ethical-hacker-practical-exam-guide-dce1f4f216c9
 
 
