@@ -100,4 +100,7 @@ Crack the wireless encryption and identify the Wi-Fi password
 3rd tentative**: adding BSSID (-b flag): `aircrack-ng -b BSSID -w passwordlist pcapfile` 
 (To find BSSID: on Wireshark click on packet, search BSSID and copy value)
 
+aircrack-ng '/home/attacker/WEPcrack-01.cap bu komanda ile 20:E5:2A:E4:38:00  tapirsan
+aircrack-ng -a2 -b 20:E5:2A:E4:38:00 -w /home/attacker/Desktop/Wordlist/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'
+
 
