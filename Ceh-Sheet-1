@@ -11,12 +11,15 @@ nmap -p 389 -sV -iL <Target File> OR nmap -p 389 -sV <IP> {FQDN = Host + Domain}
 
 
 ### Common Port Scan ###
+nmap -A -T4 -v -p- -oN scan_results.txt 192.168.1.1 ### find all and generate report 
+
 nmap -sV -sC -vv -oN 1000Port.txt <IP>
 nmap -A -vv <IP> //aggresive scan 
 sudo nmap -p- -A | servicename 
 nmap -sn 170.16.0.1/24 -oN nmap.txt
 nmap -O 170.16.0.1/24 -oN namp-OS.txt
 namp -sC -sV -sS 170.16.0.20 -oN namp-all.txt
+nmap -p 3389 <IP/24> # RDP hosts scan
 
 #####Enumeration
 nmap — script smb-os-discovery.nse -p445 <ip> (enumerate os, domain name,etc)
