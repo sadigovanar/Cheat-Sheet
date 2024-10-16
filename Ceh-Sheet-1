@@ -6,6 +6,7 @@ netdiscovery -r <IP Block>
 ldapsearch -x -h <IP> -b “DC=CEH,DC=com” and press enter 
 ldapsearch -h [Target IP Address] -x -s base
 nmap -p 389 -sV -iL <Target File> OR nmap -p 389 -sV <IP> {FQDN = Host + Domain}
+nmap -A -p- 192.168.0.105 --script smb-os-discovery
 
 
 
