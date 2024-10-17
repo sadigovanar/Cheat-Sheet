@@ -3,6 +3,8 @@ nmap -sn <IP Block>
 netdiscovery -r <IP Block>
 
 ###find version of the OS and AD 
+sudo nmap -p 3389 --script rdp-ntlm-info target_ip ###### useful for ad Os version 
+
 ldapsearch -x -h <IP> -b “DC=CEH,DC=com” and press enter 
 ldapsearch -h [Target IP Address] -x -s base
 nmap -p 389 -sV -iL <Target File> OR nmap -p 389 -sV <IP> {FQDN = Host + Domain}
