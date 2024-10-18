@@ -2,7 +2,7 @@
 nmap -sn <IP Block>
 netdiscovery -r <IP Block>
 
-###find version of the OS and AD 
+###find version of the OS and AD #### you must enable rdp after thet you can get OS VERSION 
 sudo nmap -p 3389 --script rdp-ntlm-info target_ip ###### useful for ad Os version 
 
 ldapsearch -x -h <IP> -b “DC=CEH,DC=com” and press enter 
