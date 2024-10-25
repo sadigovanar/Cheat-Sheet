@@ -168,4 +168,7 @@ Crack the wireless encryption and identify the Wi-Fi password
 aircrack-ng '/home/attacker/WEPcrack-01.cap bu komanda ile 20:E5:2A:E4:38:00  tapirsan
 aircrack-ng -a2 -b SSID  -w /usr/share/wordlists/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'
 
+######
+https://www.cvedetails.com/
+
 
