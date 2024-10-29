@@ -170,5 +170,7 @@ aircrack-ng -a2 -b SSID  -w /usr/share/wordlists/password.txt '/home/attacker/De
 
 ######
 https://www.cvedetails.com/
+https://crackstation.net/
+https://hashes.com/en/decrypt/hash
 
 
