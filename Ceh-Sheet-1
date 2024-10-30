@@ -23,6 +23,7 @@ nmap -sn 170.16.0.1/24 -oN nmap.txt
 nmap -O 170.16.0.1/24 -oN namp-OS.txt
 namp -sC -sV -sS 170.16.0.20 -oN namp-all.txt
 nmap -p 3389 <IP/24> # RDP hosts scan
+nmap -p 139,445 --open -sV 10.10.55.0/24 | searching smb
 
 #####Enumeration
 nmap — script smb-os-discovery.nse -p445 <ip> (enumerate os, domain name,etc)
@@ -52,11 +53,15 @@ ProRAT:5110    Theef:6703/2968/9871    NjRAT:5552/1177
 nmap -p389,636,3268,3269 --script ldap-rootdse <IP> // LDAP Service enumaration
 FQDN = Hostname+Domain // hostname.domain
 
+###### smb user get 
+smbclient -L \\ip
+smbclient \\\\ip\\share_name -U user%password
 
 #### Brute Force #####
 usage : hydra -l <username> -P <Wordlist Path> <Protocol>://<IP>
 example : hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.12
 hydra -t 4 -V -l user -P /path/to/password-list.txt rdp://<target_ip>
+hydra -L user_list.txt -P password_list.txt ip smb
 
 optional
 -l : specific username (John,root,guest)
