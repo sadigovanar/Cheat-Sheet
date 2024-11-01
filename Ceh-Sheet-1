@@ -62,6 +62,7 @@ usage : hydra -l <username> -P <Wordlist Path> <Protocol>://<IP>
 example : hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.12
 hydra -t 4 -V -l user -P /path/to/password-list.txt rdp://<target_ip>
 hydra -L user_list.txt -P password_list.txt ip smb
+hydra -t 1 -V -f -l Jones -P /home/passlist.txt rdp://ip
 
 optional
 -l : specific username (John,root,guest)
@@ -186,4 +187,5 @@ https://www.cvedetails.com/
 https://crackstation.net/
 https://hashes.com/en/decrypt/hash
 
+ 
 
