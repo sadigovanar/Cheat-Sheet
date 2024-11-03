@@ -132,9 +132,12 @@ admin’ or 1=1 - -
 
  `sqlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="cookies xxx" --os-shell`
 
-### Wireshark ###
+### Wireshark Usefull Filters  ###
 
-Usefull Filters
+#####
+ip.addr == 192.168.1.1: Show packets to or from the specified IP address.
+ip.src == 192.168.1.1: Show packets from the specified source IP address.
+ip.dst == 192.168.1.1: Show packets to the specified destination IP address.
 
 http.request.method==POST
 
@@ -153,11 +156,17 @@ in MQ Telemetry Transport Protocol , Publish Message
 find
 Message: ddfgdfgdsfg;ldsf;lgk
 
+http.response.code == 404: Show HTTP packets with a 404 status code (Not Found).
+http.response.code >= 400: Show HTTP error responses (client and server errors).
+tcp.stream eq 1: Show packets for a specific TCP stream (replace "1" with the appropriate stream index).
+tcp.flags.syn == 1 and tcp.flags.ack == 0: Show SYN packets (indicating new TCP connections).
+#########################################
 
 ##### Cryptografy #####
 snow -C -p "password" <target_file>
 openstego
 
+stegsnow -p 12345 -C 1.txt 2.txt
 Hashcalc — Md5 calculator
 Cryptool — decode .hex file
 Bctextencoder — decrypt text using secret key
