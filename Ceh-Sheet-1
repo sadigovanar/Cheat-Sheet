@@ -30,6 +30,21 @@ nmap — script smb-os-discovery.nse -p445 <ip> (enumerate os, domain name,etc)
 nmap — script smb-enum-users.nse -p445 <ip> (used to enumerate all users on remote Windows system using SAMR enumeration and LSA bruteforcing)
 nmap -p 445 — script=smb-enum-shares.nse, smb-enum-users.nse 10.10.19.21 (smb users and shares)
 
+######
+—------------------------
+Nmap -Pn -p 21 target > ftp
+grep -B 5 open ftp
+
+—--------------------------
+Nmap -Pn -p 3389 target > rdp
+grep -B 5 open rdp
+—-------------------------
+Nmap -Pn -p 3306 target > mysql
+grep -B 5 open mysql
+
+
+######
+
 
 
 optional
@@ -63,6 +78,7 @@ example : hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.12
 hydra -t 4 -V -l user -P /path/to/password-list.txt rdp://<target_ip>
 hydra -L user_list.txt -P password_list.txt ip smb
 hydra -t 1 -V -f -l Jones -P /home/passlist.txt rdp://ip
+Hydra -l james -P given_wordlist ftp://target
 
 optional
 -l : specific username (John,root,guest)
@@ -173,8 +189,19 @@ Bctextencoder — decrypt text using secret key
 Veracrypt — anything related to volume
 crypto -- Decrypter 
 
-
-
+Veracrypt 
+Cryptool
+Snow
+Bctextencoder
+Md5 & sha1 checksum utility
+Wpscan
+Nmap
+Metasploit
+Hydra
+Wireshark
+Winscp
+OWASP ZAP
+RDP
 
 
 ##### Mobile Hacking #### 
