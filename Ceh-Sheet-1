@@ -4,6 +4,34 @@ netdiscovery -r <IP Block>
 
 ########################################################## NMAP scans #####################################################################
 
+nmap -sn 10.10.10.10/24 -oN nmap.txt
+nmap -sC -sV -sS -O 10.10.10.11 -oN nmap.txt
+nmap -A 10.10.10.10/24 -oN nmap.txt
+
+nmap -sn -O 172.16.43.1/24 
+nmap -sS -sC -sV -O 172.16.43.3 -oN nmap.txt
+nmap 172.16.43.1/24
+
+nmap -sV -sC -pA nmap 10.10.10.x
+nmap -sC -sV -v -oN nmap.txt 10.10.10.10
+nmap -sU -sV -A t4 -v -oN udp.txt 10.10.10.1
+
+nmap -f IP
+nmap -sn -PR IP
+nmap -sn -PE ip-range
+nmap -sn 10.10.10.10/24
+nmap -sC -sS -sV -O IP
+nmap -A IP
+
+-sn disable port scan
+-PR ARP ping scan
+-PU UDP ping scan
+-PE ICMP ECHO ping scan
+-f  Splits IP into fragment packets
+
+nmap --script smb-os-discovery.nse IP 
+Displays OS, Computer-Name, Domain, WorkGroup and Ports.
+
 ###find version of the OS and AD #### you must enable rdp after thet you can get OS VERSION 
 sudo nmap -p 3389 --script rdp-ntlm-info target_ip ###### useful for ad Os version 
 
@@ -13,9 +41,6 @@ nmap -p 389 -sV -iL <Target File> OR nmap -p 389 -sV <IP> {FQDN = Host + Domain}
 nmap -A -p- 192.168.0.105 --script smb-os-discovery
 
 
-
-
-### Common Port Scan ###
 nmap -A -T4 -v -p- -oN scan_results.txt 192.168.1.1 ### find all and generate report 
 
 nmap -sV -sC -vv -oN 1000Port.txt <IP>
@@ -65,13 +90,9 @@ RDP:3389    MYSQL:3306    MSSQL:1433    LDAP:389/636/3268/3269    NFS:2049
 ############################################################ RAT #####################################################################
 RAT's Default Ports
 ProRAT:5110    Theef:6703/2968/9871    NjRAT:5552/1177
-
-
-
 #################################################### SMB USER GET #####################################################################
 smbclient -L \\ip
 smbclient \\\\ip\\share_name -U user%password
-
 ################################################# Brute Forcing SMS  ##################################################################
 
 https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
