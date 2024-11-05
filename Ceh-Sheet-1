@@ -192,6 +192,11 @@ tcp.flags.syn == 1 and tcp.flags.ack == 0: Show SYN packets (indicating new TCP 
 ################################################################ Cryptografy ###############################################################
 snow -C -p "password" <target_file>
 openstego
+snow.exe -C -p "test" confidential.txt
+-C  compressing / uncompressing
+-p  password
+Open Stego 
+GUI tool
 
 stegsnow -p 12345 -C 1.txt 2.txt
 Hashcalc — Md5 calculator
