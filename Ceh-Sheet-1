@@ -61,7 +61,7 @@ nmap -p 445 — script=smb-enum-shares.nse, smb-enum-users.nse 10.10.19.21 (smb 
 nmap -p389,636,3268,3269 --script ldap-rootdse <IP> // LDAP Service enumaration
 FQDN = Hostname+Domain // hostname.domain
 
-##### all port scan 
+##### all port scan RAT #####
 Port-Specific Scan 
 nmap -p 5110,6703,2968,9871,5552,1177 ip/24
 
