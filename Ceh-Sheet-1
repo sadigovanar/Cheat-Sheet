@@ -33,7 +33,7 @@ nmap --script smb-os-discovery.nse IP
 Displays OS, Computer-Name, Domain, WorkGroup and Ports.
 
 ###find version of the OS and AD #### you must enable rdp after thet you can get OS VERSION 
-sudo nmap -p 3389 --script rdp-ntlm-info target_ip ###### useful for ad Os version 
+sudo nmap -p 3389 --script rdp-ntlm-info | grep Pro target_ip ###### useful for ad Os version 
 
 ldapsearch -x -h <IP> -b “DC=CEH,DC=com” and press enter 
 ldapsearch -h [Target IP Address] -x -s base
@@ -64,10 +64,7 @@ FQDN = Hostname+Domain // hostname.domain
 ##### all port scan RAT #####
 Port-Specific Scan 
 nmap -p 5110,6703,2968,9871,5552,1177 ip/24
-
-Service Version Detection
 nmap -sV -p 5110,6703,2968,9871,5552,1177 ip/24
-
 Aggressive Scan
 nmap -A -p 5110,6703,2968,9871,5552,1177 ip/24
 
@@ -149,6 +146,9 @@ use exploit/unix/webapp/
 set RHOSTS ip
 set RPORT port
 run
+
+https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
+
 ################################################################## Sql injection ##################################################################
 
 Sqlmap -r req.txt   --dbs
@@ -221,7 +221,7 @@ Hashcalc — Md5 calculator
 Cryptool — decode .hex file
 Bctextencoder — decrypt text using secret key
 Veracrypt — anything related to volume
-crypto -- Decrypter 
+CryptoForge Decrypter
 
 Veracrypt 
 Cryptool
