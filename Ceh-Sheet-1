@@ -29,7 +29,8 @@ nmap -A IP
 -PE ICMP ECHO ping scan
 -f  Splits IP into fragment packets
 
-##### Nmap script scan #####
+##### Nmap with script scan #####
+
 nmap --script smb-os-discovery.nse IP 
 Displays OS, Computer-Name, Domain, WorkGroup and Ports.
 nmap --script nbstat.nse ip 
