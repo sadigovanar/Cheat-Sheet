@@ -29,11 +29,19 @@ nmap -A IP
 -PE ICMP ECHO ping scan
 -f  Splits IP into fragment packets
 
+##### Nmap script scan #####
 nmap --script smb-os-discovery.nse IP 
 Displays OS, Computer-Name, Domain, WorkGroup and Ports.
-
+nmap --script nbstat.nse ip 
+##### we can see that we have the shares listed although the Access is Denied the existence of the
+nmap --script smb-enum-shares -p139,445 ip 
 ###find version of the OS and AD #### you must enable rdp after thet you can get OS VERSION 
 sudo nmap -p 3389 --script rdp-ntlm-info | grep Pro target_ip ###### useful for ad Os version 
+#####Enumeration
+nmap — script smb-os-discovery.nse -p445 <ip> (enumerate os, domain name,etc)
+nmap — script smb-enum-users.nse -p445 <ip> (used to enumerate all users on remote Windows system using SAMR enumeration and LSA bruteforcing)
+nmap -p 445 — script=smb-enum-shares.nse, smb-enum-users.nse ip (smb users and shares)
+
 
 ldapsearch -x -h <IP> -b “DC=CEH,DC=com” and press enter 
 ldapsearch -h [Target IP Address] -x -s base
@@ -52,10 +60,7 @@ namp -sC -sV -sS 170.16.0.20 -oN namp-all.txt
 nmap -p 3389 <IP/24> # RDP hosts scan
 nmap -p 139,445 --open -sV 10.10.55.0/24 | searching smb
 
-#####Enumeration
-nmap — script smb-os-discovery.nse -p445 <ip> (enumerate os, domain name,etc)
-nmap — script smb-enum-users.nse -p445 <ip> (used to enumerate all users on remote Windows system using SAMR enumeration and LSA bruteforcing)
-nmap -p 445 — script=smb-enum-shares.nse, smb-enum-users.nse 10.10.19.21 (smb users and shares)
+
 
 ### Finding Domain Controller and FQDN ####
 nmap -p389,636,3268,3269 --script ldap-rootdse <IP> // LDAP Service enumaration
@@ -98,6 +103,14 @@ RDP:3389    MYSQL:3306    MSSQL:1433    LDAP:389/636/3268/3269    NFS:2049
 RAT's Default Ports
 ProRAT:5110    Theef:6703/2968/9871    NjRAT:5552/1177
 #################################################### SMB USER GET #####################################################################
+#Here we see that the target machine has some shares.
+smbmap -H ip
+#Let’s enumerate a user-specific share using the credentials for that user. 
+smbmap -H 192.168.1.17 -u raj -p 123
+
+smbclient //ip/guest
+smbclient -L ip -U raj%123
+smbclient //ip/share -U raj%123
 smbclient -L \\ip
 smbclient \\\\ip\\share_name -U user%password
 ################################################# Brute Forcing   ##################################################################
