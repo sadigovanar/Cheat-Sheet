@@ -233,6 +233,7 @@ Open Stego
 GUI tool
 
 stegsnow -p 12345 -C 1.txt 2.txt
+steghide extract -sf file.doc
 Hashcalc — Md5 calculator
 Cryptool — decode .hex file
 Bctextencoder — decrypt text using secret key
