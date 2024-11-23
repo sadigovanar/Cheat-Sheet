@@ -305,5 +305,10 @@ https://www.cvedetails.com/
 https://crackstation.net/
 https://hashes.com/en/decrypt/hash
 
+
+##############################
+script /dev/null -c bash
+**python -c ‘import pty; pty.spawn(“/bin/sh”)’**
+
  
 
