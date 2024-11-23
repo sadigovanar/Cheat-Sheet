@@ -306,9 +306,10 @@ https://crackstation.net/
 https://hashes.com/en/decrypt/hash
 
 
-##############################
+##############################This command creates an interactive shell using Python by leveraging the pty modul#####
 script /dev/null -c bash
-**python -c ‘import pty; pty.spawn(“/bin/sh”)’**
+python -c ‘import pty; pty.spawn(“/bin/sh”)’
+python -c ‘import pty;pty.spawn(“/bin/bash”)’
 
  
 
