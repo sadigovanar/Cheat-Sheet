@@ -40,6 +40,9 @@ nmap -A IP
 
 ##### Nmap with script scan #####
 
+#mail scan 
+nmap -sV -T4 --script smtp-enum-users -p 25,465,587 
+
 nmap --script smb-os-discovery.nse IP 
 Displays OS, Computer-Name, Domain, WorkGroup and Ports.
 nmap --script nbstat.nse ip 
