@@ -108,11 +108,24 @@ RDP:3389    MYSQL:3306    MSSQL:1433    LDAP:389/636/3268/3269    NFS:2049
 RAT's Default Ports
 ProRAT:5110    Theef:6703/2968/9871    NjRAT:5552/1177
 #################################################### SMB USER GET #####################################################################
+SMB command on Linux cmd 
+-L: List available shares.
+-U: Specify username.
+-W: Set domain or workgroup.
+-c: Run a command (e.g., ls).
+####List shares
+smbclient -L 192.168.1.100 -U user
+Connect to a share
+smbclient //192.168.1.100/shared -U user
+####Download a file
+smbclient //192.168.1.100/shared -U user -c "get file.txt"
+###Upload a file
+smbclient //192.168.1.100/shared -U user -c "put local_file.txt"
+
 #Here we see that the target machine has some shares.
 smbmap -H ip
 #Let’s enumerate a user-specific share using the credentials for that user. 
 smbmap -H 192.168.1.17 -u raj -p 123
-
 smbclient //ip/guest
 smbclient -L ip -U raj%123
 smbclient //ip/share -U raj%123
