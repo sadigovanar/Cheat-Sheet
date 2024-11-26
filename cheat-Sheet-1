@@ -40,8 +40,12 @@ nmap -A IP
 
 ##### Nmap with script scan #####
 
-#mail scan 
-nmap -sV -T4 --script smtp-enum-users -p 25,465,587 
+###### mail scan 
+nmap -sV -T4 --script smtp-enum-users -p 25,465,587
+nmap -p 25,110,143,465,587,993,995 <server_IP>
+nmap -sV -p 25,110,143,465,587,993,995 <server_IP>
+nmap --script ssl-enum-ciphers -p 465,993,995 <server_IP>
+nmap --script smtp-commands -p 25,587 <server_IP>
 
 nmap --script smb-os-discovery.nse IP 
 Displays OS, Computer-Name, Domain, WorkGroup and Ports.
@@ -422,6 +426,7 @@ https://crackstation.net/
 https://hashes.com/en/decrypt/hash
 https://hashes.com/en/tools/hash_identifier
 https://www.tunnelsup.com/hash-analyzer/    ##### hash_identifier
+https://emn178.github.io/online-tools/crc/
 
 
 ##############################This command creates an interactive shell using Python by leveraging the pty modul#####
